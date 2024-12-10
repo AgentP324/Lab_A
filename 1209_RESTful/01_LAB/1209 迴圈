@@ -1,0 +1,19 @@
+let list = ['諞果','鳳梨','柳丁']
+
+for in**
+for (const apple in list){
+    const.log(list[apple])
+}
+
+for of**
+for(const bee of list){
+    const.log(bee);
+}
+
+for each**
+list.forEach(function(value ,index,arry){
+    const.log(bee);
+})
+
+
+$.each

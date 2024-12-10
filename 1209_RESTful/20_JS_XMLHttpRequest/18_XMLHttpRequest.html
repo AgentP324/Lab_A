@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <button id="btnGetFileT">讀取文字檔 async 參數為 true (非同步)</button>
+    <button id="btnGetFileF">讀取文字檔 async 參數為 false(同步) </button>
+    <hr>
+    <main>
+        <div id="divLeft">A</div>
+        <div id="divRight">B</div>
+    </main>
+
+
+    <script>
+        function getData(filepath,elemID,async){
+            let apple = new XMLHttpRequest();
+            apple.addEventListener('load',function(){
+                console.log(this.responseText);
+                document.getElementById(elemID).innerText = this.responseText;
+        });
+            apple.open("GET",filepath,async);
+            apple.send();
+    }
+
+
+
+        //  #divLeft  顯示 ../_file/bigfile.txt   文字檔資料
+        //  #divRight 顯示 ../_file/smallfile.txt 文字檔資料
+
+        // 10. 先讀取 bigfile.txt ， 後讀取 smallfile.txt
+        //     測試 async 參數為 true (非同步)
+        btnGetFileT.onclick = function () {
+            
+            getData("../_file/bigfile.txt",'divLeft',true);
+            
+            getData("../_file/smallfile.txt",'divRight',true);
+
+        }
+
+        // 20. 先讀取 bigfile.txt ， 後讀取 smallfile.txt
+        //     測試 async 參數為 false (同步)
+        btnGetFileF.onclick = function () {
+            getData("../_file/bigfile.txt",'divLeft',false);
+            
+            getData("../_file/smallfile.txt",'divRight',false);
+        }
+
+    </script>
+
+</body>
+
+</html>

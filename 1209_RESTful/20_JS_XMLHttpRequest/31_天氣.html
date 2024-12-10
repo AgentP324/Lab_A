@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <button id="btnGetOpenData">取得天氣資料</button>
+    <hr>
+    <select id="cityList"></select>
+
+    <script>
+        btnGetOpenData.onclick = function(){
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('load',function(){
+                console.log(this.responseText);
+
+                let pika = new DOMParser();
+                let abd = pika.parseFromString(this.responseText,"text/xml");
+                console.log(abd);
+                
+                let list = abd.getElementsByTagName('locationName');
+                console.log(list);
+
+                for(let k=0;k<list.length;k++){
+                    console.log(list[k].innerHTML);
+                }
+                
+        });
+            xhr.open('GET','../_file/weather.xml');
+            xhr.send();
+
+           
+        }
+        
+    </script>
+ 
+    
+</body>
+</html>

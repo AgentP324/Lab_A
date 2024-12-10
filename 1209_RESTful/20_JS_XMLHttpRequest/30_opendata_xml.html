@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+</head>
+
+<body>
+
+    <h4>一般天氣預報-今明36小時天氣預報</h4>
+    <p><a href='https://data.gov.tw/dataset/6069'>https://data.gov.tw/dataset/6069</a></p>
+    <h4>預報 XML 產品預報因子欄位中文說明表</h4>
+    <p><a href='https://opendata.cwa.gov.tw/opendatadoc/MFC/A0012-001.pdf'>https://opendata.cwa.gov.tw/opendatadoc/MFC/A0012-001.pdf</a></p>
+    <h4>下載今明36小時天氣預報資料（XML格式）</h4>
+    <p><a href="https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=XML">https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=XML</a></p>
+    
+    <button id="btnGetOpenData">取得天氣資料</button>
+    <hr>
+    <select id="cityList"></select>
+    <hr>
+    <div id="divResult"></div>
+
+    <script>
+
+        // 10. 透過 XMLHttpRequest 取得天氣資料
+        //     * 請先將今明36小時天氣預報資料下載下來
+
+        // 20. 將縣市放到下拉選單中；
+        //     在使用者選擇縣市的時候，帶出對應的天氣資料
+
+        let apple = new XMLHttpRequest();
+            apple.addEventListener('load',function(){
+                console.log(this.responseText);
+                document.getElementById(cityList).innerText = this.responseText;
+        });
+            apple.open("GET","../_file/weather.xml");
+            apple.send();
+
+            let pika = new DOMParser();
+            let abd = pika.parseFromString(temp,"text/xml");
+
+            let xa = abd.getElementsByTagName('author');
+            console.log(xa);
+    </script>
+</body>
+
+</html>
